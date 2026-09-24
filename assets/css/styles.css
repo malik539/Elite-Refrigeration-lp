@@ -435,15 +435,21 @@ button { font: inherit; }
 .proof__aside-text { color: rgba(255, 255, 255, 0.8); max-width: 34ch; }
 .proof__aside .btn { justify-self: start; margin-top: 8px; }
 @media (max-width: 899px) { .proof__aside { display: none; } } /* mobile sticky bar already carries this CTA */
-/* Reviews: swipeable row on mobile, grid on desktop (holds up to 5) */
-.proof__reviews { margin-top: 28px; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.3) transparent; }
-.proof__reviews > .review { flex: 0 0 min(86vw, 340px); scroll-snap-align: start; }
-@media (min-width: 900px) {
-  .proof__reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; padding-bottom: 0; }
-  .proof__reviews > .review { flex: none; }
-  .proof__reviews--1 { grid-template-columns: minmax(0, 1fr); max-width: 720px; }
-  .proof__reviews--2, .proof__reviews--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Reviews ticker: continuous scroll, pauses on hover/focus; swipeable row under reduced motion */
+.ticker { margin-top: 28px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.ticker__track { display: flex; gap: 14px; width: max-content; animation: ticker calc(var(--ticker-count, 6) * 9s) linear infinite; will-change: transform; }
+.ticker:hover .ticker__track, .ticker:focus-within .ticker__track { animation-play-state: paused; }
+.proof__reviews { display: flex; gap: 14px; }
+.proof__reviews > .review { flex: 0 0 340px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 7px)); } }
+@media (max-width: 480px) { .proof__reviews > .review { flex-basis: 84vw; } }
+@media (prefers-reduced-motion: reduce) {
+  .ticker { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; -webkit-mask-image: none; mask-image: none; }
+  .ticker__track { animation: none; width: auto; }
+  .ticker__track > ul[aria-hidden] { display: none; }
+  .proof__reviews > .review { scroll-snap-align: start; }
 }
+
 .review--dark { background: rgba(255, 255, 255, 0.06); }
 .review--dark .review__source { color: rgba(255, 255, 255, 0.7); }
 .review--dark .review__source .icon { color: var(--brand-blue); }
