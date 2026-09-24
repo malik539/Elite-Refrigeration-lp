@@ -26,7 +26,7 @@ Update the `<link rel="canonical">` and `og:url` tags in each page if the pages 
 2. Hero: keyword-matched H1, three proof points, single offer block, lead form beside the copy (desktop) or directly under the CTAs (mobile)
 3. Trust strip: Owner Operated · 40+ Combined Years · Commercial Focus · Continuously Trained Technicians
 4. Services: intro, image, six service cards
-5. Why Elite proof panel with Google reviews (HVAC page shows both reviews; the refrigeration page shows only the review that is not HVAC-specific)
+5. Why Elite proof panel with a Google reviews row that holds up to five reviews per page (swipeable on mobile, grid on desktop). Only two real reviews exist in the supplied content: the HVAC page shows both, the refrigeration page shows the one that is not HVAC-specific. To add more, paste each real review into both pages' `proof__reviews` list using the existing `<li class="review …">` markup (name, text, and choose which page it belongs on).
 6. Five service-specific FAQs
 7. Final CTA with the offer restated once
 8. Footer with a single cross-link to the other page

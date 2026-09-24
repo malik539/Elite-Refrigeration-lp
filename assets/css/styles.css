@@ -429,9 +429,21 @@ button { font: inherit; }
 .proof__list strong { color: #fff; }
 .proof__mark { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; background: rgba(0, 173, 239, 0.18); color: var(--brand-blue); }
 .proof__mark svg { width: 18px; height: 18px; fill: currentColor; }
-.proof__intro .btn { margin-top: 26px; }
-@media (max-width: 899px) { .proof__intro .btn { display: none; } } /* mobile sticky bar already carries this CTA */
-.proof__reviews { display: grid; gap: 14px; }
+.proof__aside { display: grid; align-content: end; gap: 10px; }
+.proof__aside-kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); }
+.proof__aside-kicker .icon { width: 20px; height: 20px; }
+.proof__aside-text { color: rgba(255, 255, 255, 0.8); max-width: 34ch; }
+.proof__aside .btn { justify-self: start; margin-top: 8px; }
+@media (max-width: 899px) { .proof__aside { display: none; } } /* mobile sticky bar already carries this CTA */
+/* Reviews: swipeable row on mobile, grid on desktop (holds up to 5) */
+.proof__reviews { margin-top: 28px; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.3) transparent; }
+.proof__reviews > .review { flex: 0 0 min(86vw, 340px); scroll-snap-align: start; }
+@media (min-width: 900px) {
+  .proof__reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; padding-bottom: 0; }
+  .proof__reviews > .review { flex: none; }
+  .proof__reviews--1 { grid-template-columns: minmax(0, 1fr); max-width: 720px; }
+  .proof__reviews--2, .proof__reviews--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .review--dark { background: rgba(255, 255, 255, 0.06); }
 .review--dark .review__source { color: rgba(255, 255, 255, 0.7); }
 .review--dark blockquote p { color: #fff; font-size: 1.04rem; }
