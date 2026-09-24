@@ -446,6 +446,7 @@ button { font: inherit; }
 }
 .review--dark { background: rgba(255, 255, 255, 0.06); }
 .review--dark .review__source { color: rgba(255, 255, 255, 0.7); }
+.review--dark .review__source .icon { color: var(--brand-blue); }
 .review--dark blockquote p { color: #fff; font-size: 1.04rem; }
 .review--dark .review__author { color: #fff; }
 .review--dark .review__author::before { background: var(--brand-blue); }
